@@ -1,0 +1,32 @@
+#include <string>
+#include <iostream>
+#include<ctime>
+#include<cstdlib>
+#include <algorithm>
+using namespace std;
+typedef long long di;
+
+int main() {
+    srand(static_cast<unsigned int>(time(0)));
+    di n, k, z;
+    n = rand() % 20;
+    k = rand() % 20;
+    string score = "";
+    while (n--)
+    {
+        score += to_string(rand() % 20);
+        score += " ";
+    }
+    cout << score << endl;
+  //  sort(score.begin(), score.end());
+  //  cout << score << endl;
+    while (k--)
+    {
+        z = rand() % 20;
+        cout << z << " ";
+        cout << (score.find(to_string(z)) != string::npos ? "YES" : "NO") << endl;
+        //cout << (score.find(to_string(rand() % 20))!=string::npos ? "YES" : "NO") << ' ';
+    }
+    system("pause");
+    return 0;
+}
