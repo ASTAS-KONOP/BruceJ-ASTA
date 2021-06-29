@@ -1,0 +1,25 @@
+#include <iostream>
+#include <set>
+#include<ctime>
+#include<cstdlib>
+using namespace std;
+typedef long long di;
+int main() {
+    srand(static_cast<unsigned int>(time(0)));
+    di n, k, z;
+    n = rand() % 20;
+    k = rand() % 20;
+    set<di> ball;
+    while (n--) 
+    {
+        z = rand() % 20;
+        ball.insert(z);
+    }
+    while (k--) 
+    {
+        z = rand() % 20;
+        cout << (ball.count(z) ? "YES" : "NO") << ' ';
+    }
+    system("pause");
+    return 0;
+}
