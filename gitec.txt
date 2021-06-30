@@ -1,0 +1,14 @@
+#include <iostream>
+#include <set>
+typedef long long di;
+using namespace std;
+int main() {
+di n, k, z;
+cin >> n >> k;
+set<di> score;
+while(n--){
+   cin >> z;
+   score.insert(z);}
+while(k--){
+   cin >> z;
+   cout << (score.count(z) ? "YES" : "NO") << ' ';}}
