@@ -1,0 +1,166 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <set>
+#include <algorithm>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+typedef long long di;
+
+string res(di N, di K, vector<di> ball, vector <di> call)
+{
+    di n = N, k = K; 
+    string ans;
+    set<di>score;
+    while (n--)
+    {
+        score.insert(ball[n]);
+    }
+    while (k--)
+    {
+        (score.count(call[k]) ? ans += "YES" : ans += "NO");
+    }
+    return ans;
+}
+
+bool test1()
+{
+    di n = 2, k = 3;
+    vector <di> score, call;
+    score.push_back(12);
+    score.push_back(22);
+    call.push_back(10);
+    call.push_back(12);
+    call.push_back(14);
+    string answ = "NO YES NO", re;
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test2()
+{
+    di n = 2, k = 2;
+    vector <di> score, call;
+    score.push_back(1);
+    score.push_back(2);
+    call.push_back(1);
+    call.push_back(3);
+    string answ = "YES NO", re;
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test3()
+{
+    di n = 3, k = 4;
+    vector <di> score, call;
+    score.push_back(1);
+    score.push_back(6);
+    score.push_back(9);
+    call.push_back(7);
+    call.push_back(9);
+    call.push_back(10);
+    call.push_back(1);
+    string answ = "NO YES NO YES", re;
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test4()
+{
+    di n = 200000, k = 200000;
+    vector <di> score (n), call(k);
+    fill(score.begin(), score.end(), 2);
+    fill(call.begin(), call.end(), 1);
+    string answ, re;
+    for (di i = 0;i < 599997;i += 3)
+        answ += "NO ";
+    answ += "NO";
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test5()
+{
+    di n = 200000, k = 1;
+    vector <di> score(n), call;
+    fill(score.begin(), score.end(), 1);
+    call.push_back(1);
+    string answ, re;
+    for (di i = 0;i < 799997;i += 4)
+        answ += "YES ";
+    answ += "YES";
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test6()
+{
+    di n = 1, k = 200000;
+    vector <di> score, call(k);
+    fill(call.begin(), call.end(), 1);
+    score.push_back(1);
+    string answ = "YES", re;
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test7()
+{
+    di n = 200000, k = 200000;
+    vector <di> score(n), call(k);
+    fill(score.begin(), score.end(), 4294967296);
+    fill(call.begin(), call.end(), 1);
+    string answ = "NO", re;
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test8()
+{
+    di n = 200000, k = 1;
+    vector <di> score(n), call;
+    fill(score.begin(), score.end(), 4294967296);
+    call.push_back(4294967296);
+    string answ, re;
+    for (di i = 0;i < 799997;i += 4)
+        answ += "YES ";
+    answ += "YES";
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test9()
+{
+    di n = 1, k = 2;
+    vector <di> score, call;
+    score.push_back(55);
+    call.push_back(3);
+    call.push_back(55);
+    string answ = "NO YES", re;
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+bool test10()
+{
+    di n = 4, k = 4;
+    vector <di> score, call;
+    score.push_back(11);
+    score.push_back(45);
+    score.push_back(8);
+    score.push_back(2);
+    call.push_back(11);
+    call.push_back(3);
+    call.push_back(8);
+    call.push_back(9);
+    string answ = "YES NO YES NO", re;
+    re += res(n, k, score, call);
+    return (answ == re) ? 1 : 0;
+}
+
+
+int main()
+{
+    srand(static_cast<unsigned int>(time(0)));
+    vector <bool (*)()> ertest = {test1, test2, test3, test4, test5, test6, test7, test8, test9, test10 };
+    for (size_t i = 0; i < ertest.size();i++)
+        if (!(*ertest[i])())
+            cout << i + 1 << " test OK " << endl;
+        else cout << i + 1 << " test ERROR " << endl;
+
+    system("pause");
+    return 0;
+}
